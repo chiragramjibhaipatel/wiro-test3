@@ -317,10 +317,6 @@
   text-align: center !important;
 }
 
-.custom-font-serif {
-  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
-}
-
 .custom-text-base {
   font-size: 1rem !important;
   line-height: 1.5rem !important;
@@ -338,10 +334,6 @@
 
 .custom-font-medium {
   font-weight: 500 !important;
-}
-
-.custom-italic {
-  font-style: italic !important;
 }
 
 .custom-text-gray-500 {
@@ -363,6 +355,18 @@
   transition-duration: 200ms !important;
 }
 
+/* Import custom font */
+
+@font-face {
+  font-family: 'MonopolaScript';
+
+  src: url('https://cdn.shopify.com/s/files/1/0903/9432/9451/files/MonopolaScript-GOmpg.ttf?v=1741675590') format('ttf');
+
+  font-weight: normal;
+
+  font-style: normal;
+}
+
 /* Custom background colors */
 
 .custom-bg-white {
@@ -379,6 +383,26 @@
 
 .custom-bg-black {
   background-color: black !important;
+}
+
+.custom-text-white {
+  color: white !important;
+}
+
+.custom-text-gold {
+  color: gold !important;
+}
+
+.custom-text-gray {
+  color: gray !important;
+}
+
+.custom-font-serif {
+  font-family: serif !important;
+}
+
+.custom-font-script {
+  font-family: 'MonopolaScript', cursive !important;
 }
 
 .hover\:custom-border-gray-500:hover {
@@ -404,4 +428,3 @@
 .custom-peer:checked ~ .peer-checked\:custom-opacity-100 {
   opacity: 1 !important;
 }
-

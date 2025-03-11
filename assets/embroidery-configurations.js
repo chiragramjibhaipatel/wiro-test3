@@ -94,12 +94,11 @@ class EmbroideryConfigurations extends HTMLElement {
     });
     
     // Add selected classes to preview
-    this.previewElement.classList.add(`font-${selectedFont.toLowerCase()}`);
-    this.previewElement.classList.add(`color-${selectedColor.toLowerCase()}`);
+    this.previewElement.classList.add(`custom-font-${selectedFont.toLowerCase()}`);
     
     // Update preview content
     this.previewElement.innerHTML = `
-      <div class="custom-text-2xl custom-font-bold">${name}</div>
+      <div class="custom-text-2xl custom-font-bold custom-text-${selectedColor.toLowerCase()}">${name}</div>
     `;
   }
 }

@@ -70,27 +70,18 @@
       <div class="custom-mb-4">
         <p class="custom-mb-2 custom-text-sm">Choose font</p>
         <div class="custom-grid custom-grid-cols-2 custom-gap-2">
-          <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500 custom-bg-[{{ color | downcase }}]">
-            <input
-              type="radio"
-              name="properties[Font Style]"
-              value="Serif"
-              class="custom-sr-only peer"
-              form="{{ product_form_id }}"
-            >
-            <span class="custom-text-base custom-font-serif">Serif</span>
-          </label>
-
-          <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500">
-            <input
-              type="radio"
-              name="properties[Font Style]"
-              value="Script"
-              class="custom-sr-only peer"
-              form="{{ product_form_id }}"
-            >
-            <span class="custom-text-base custom-italic">Script</span>
-          </label>
+          {% for font in fonts.value %}
+            <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500">
+              <input
+                type="radio"
+                name="properties[Font Style]"
+                value="{{ font }}"
+                class="custom-sr-only peer"
+                form="{{ product_form_id }}"
+              >
+              <span class="custom-text-base custom-font-{{ font | downcase }}">{{ font }}</span>
+            </label>
+          {% endfor %}
         </div>
       </div>
 

@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import custom font */
+@font-face {
+    font-family: 'MonopolaScript';
+    src: url('https://cdn.shopify.com/s/files/1/0903/9432/9451/files/MonopolaScript-GOmpg.ttf?v=1741675590') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+
+
 /* Custom background colors */
 
 .custom-bg-white {
@@ -20,3 +30,24 @@
   background-color: black !important;
 }
 
+.custom-text-white {
+  color: white !important;
+}
+
+.custom-text-gold {
+  color: gold !important;
+}
+
+.custom-text-gray {
+  color: gray !important;
+}
+
+
+
+.custom-font-serif {
+  font-family: serif !important;
+}
+
+.custom-font-script {
+  font-family: 'MonopolaScript', cursive !important;
+}

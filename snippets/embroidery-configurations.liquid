@@ -1,6 +1,8 @@
 {% comment %}
   Embroidery configurations snippet
   This snippet is used to display embroidery options for products
+  @param fonts: array of fonts
+  @param colors: array of colors
 {% endcomment %}
 
 {{ 'embroidery-configurations.css' | asset_url | stylesheet_tag }}
@@ -10,71 +12,91 @@
   <!-- Top section with checkbox -->
   <div class="custom-flex custom-items-center custom-justify-between custom-mb-4">
     <label class="custom-flex custom-items-center custom-gap-2 custom-text-base custom-font-medium">
-      <input type="checkbox" name="properties[_has_embroidery]" class="custom-w-4 custom-h-4" value="Add Embroidered Name" form="{{ product_form_id }}">
+      <input
+        type="checkbox"
+        name="properties[_has_embroidery]"
+        class="custom-w-4 custom-h-4"
+        value="Add Embroidered Name"
+        form="{{ product_form_id }}"
+      >
       <span>Add Embroidered Name</span>
     </label>
     <span class="custom-text-base custom-font-medium">+£15</span>
   </div>
-  
+
   <!-- Compact two column layout -->
   <div class="embroidery-config-options custom-flex custom-gap-3 custom-hidden">
     <!-- Left column with configuration options (65%) -->
     <div class="custom-w-[65%]">
       <div class="custom-mb-4">
         <p class="custom-mb-2 custom-text-sm">Add up to 10 characters</p>
-        <input 
-          type="text" 
-          name="properties[embroidered_name]" 
-          placeholder="Embroidered Name" 
+        <input
+          type="text"
+          name="properties[embroidered_name]"
+          placeholder="Embroidered Name"
           maxlength="10"
           class="custom-w-full custom-p-2 custom-border custom-border-gray-300 custom-rounded custom-text-sm"
           form="{{ product_form_id }}"
         >
       </div>
-      
+
       <div class="custom-mb-4">
         <p class="custom-mb-2 custom-text-sm">Choose letter colour</p>
         <div class="custom-flex custom-gap-4">
-          <div class="custom-flex custom-flex-col custom-items-center custom-gap-1">
-            <label class="custom-relative custom-w-10 custom-h-10 custom-rounded-full custom-border-2 custom-border-gray-300 custom-bg-white custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 group">
-              <input type="radio" name="properties[Letter Color]" value="White" class="custom-sr-only peer" form="{{ product_form_id }}">
-              <span class="custom-sr-only">White</span>
-              <span class="custom-absolute custom-inset-0 custom-rounded-full custom-border-2 custom-border-transparent peer-checked:custom-border-blue-500 custom-pointer-events-none"></span>
-              <span class="custom-absolute custom-bottom-0 custom-right-0 custom-w-3 custom-h-3 custom-rounded-full custom-bg-blue-500 custom-opacity-0 peer-checked:custom-opacity-100 custom-transform custom-translate-x-1 custom-translate-y-1"></span>
-            </label>
-            <span class="custom-text-xs peer-checked:custom-font-bold">White</span>
-          </div>
-          
-          <div class="custom-flex custom-flex-col custom-items-center custom-gap-1">
-            <label class="custom-relative custom-w-10 custom-h-10 custom-rounded-full custom-border-2 custom-border-transparent custom-bg-yellow-500 custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 group">
-              <input type="radio" name="properties[Letter Color]" value="Gold" class="custom-sr-only peer" form="{{ product_form_id }}">
-              <span class="custom-sr-only">Gold</span>
-              <span class="custom-absolute custom-inset-0 custom-rounded-full custom-border-2 custom-border-transparent peer-checked:custom-border-blue-500 custom-pointer-events-none"></span>
-              <span class="custom-absolute custom-bottom-0 custom-right-0 custom-w-3 custom-h-3 custom-rounded-full custom-bg-blue-500 custom-opacity-0 peer-checked:custom-opacity-100 custom-transform custom-translate-x-1 custom-translate-y-1"></span>
-            </label>
-            <span class="custom-text-xs peer-checked:custom-font-bold">Gold</span>
-          </div>
+          {% for color in colors.value %}
+            <div class="custom-flex custom-flex-col custom-items-center custom-gap-1">
+              <label class="custom-relative custom-w-10 custom-h-10 custom-rounded-full custom-border-2 custom-border-gray-300 custom-bg-white custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 group custom-bg-{{ color | downcase }}">
+                <input
+                  type="radio"
+                  name="properties[Letter Color]"
+                  value="{{ color }}"
+                  class="custom-sr-only peer"
+                  form="{{ product_form_id }}"
+                >
+                <span class="custom-sr-only">{{ color }}</span>
+                <span
+                  class="custom-absolute custom-inset-0 custom-rounded-full custom-border-2 custom-border-transparent peer-checked:custom-border-blue-500 custom-pointer-events-none"
+                ></span>
+                <span
+                  class="custom-absolute custom-bottom-0 custom-right-0 custom-w-3 custom-h-3 custom-rounded-full custom-bg-blue-500 custom-opacity-0 peer-checked:custom-opacity-100 custom-transform custom-translate-x-1 custom-translate-y-1"
+                ></span>
+              </label>
+              <span class="custom-text-xs peer-checked:custom-font-bold">{{ color }}</span>
+            </div>
+          {% endfor %}
         </div>
       </div>
-      
+
       <div class="custom-mb-4">
         <p class="custom-mb-2 custom-text-sm">Choose font</p>
         <div class="custom-grid custom-grid-cols-2 custom-gap-2">
-          <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500">
-            <input type="radio" name="properties[Font Style]" value="Serif" class="custom-sr-only peer" form="{{ product_form_id }}">
+          <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500 custom-bg-[{{ color | downcase }}]">
+            <input
+              type="radio"
+              name="properties[Font Style]"
+              value="Serif"
+              class="custom-sr-only peer"
+              form="{{ product_form_id }}"
+            >
             <span class="custom-text-base custom-font-serif">Serif</span>
           </label>
-          
+
           <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500">
-            <input type="radio" name="properties[Font Style]" value="Script" class="custom-sr-only peer" form="{{ product_form_id }}">
+            <input
+              type="radio"
+              name="properties[Font Style]"
+              value="Script"
+              class="custom-sr-only peer"
+              form="{{ product_form_id }}"
+            >
             <span class="custom-text-base custom-italic">Script</span>
           </label>
         </div>
       </div>
-      
+
       <p class="custom-text-xs">Unfortunately we can not accept returns or exchanges on embroidered items.</p>
     </div>
-    
+
     <!-- Right column with preview image (35%) -->
     <div class="custom-w-[35%] custom-flex custom-items-start custom-justify-center">
       <div class="custom-w-full custom-bg-gray-100 custom-p-2 custom-rounded">
@@ -84,4 +106,4 @@
       </div>
     </div>
   </div>
-</embroidery-configurations> 
+</embroidery-configurations>

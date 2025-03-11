@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom background colors */
+
+.custom-bg-white {
+  background-color: white !important;
+}
+
+.custom-bg-gold {
+  background-color: gold !important;
+}
+
+.custom-bg-gray {
+  background-color: gray !important;
+}
+
+.custom-bg-black {
+  background-color: black !important;
+}
+

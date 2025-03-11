@@ -662,7 +662,12 @@
                 {% render 'icon-with-text', block: block %}
               {%- when 'embroidery_configurations' -%}
                 {%- if product.metafields.custom.has_embroidery -%}
-                  {% render 'embroidery-configurations', block: block, product_form_id: product_form_id %}
+                  {% render 'embroidery-configurations', 
+                    block: block, 
+                    product_form_id: product_form_id,
+                    fonts: product.metafields.custom.embroidery_fonts,
+                    colors: product.metafields.custom.embroidery_colors
+                  %}
                 {%- endif -%}
             {%- endcase -%}
           {%- endfor -%}

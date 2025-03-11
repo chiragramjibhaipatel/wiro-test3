@@ -1,0 +1,55 @@
+.embroidery-configurations {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.embroidery-preview {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Font styles for preview */
+.embroidery-preview.font-serif {
+  font-family: serif;
+}
+
+.embroidery-preview.font-script {
+  font-family: cursive;
+  font-style: italic;
+}
+
+/* Color styles for preview */
+.embroidery-preview.color-white {
+  color: #ffffff;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.embroidery-preview.color-gold {
+  color: #ffc107;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Selected state for color options */
+input[name="properties[Letter Color]"]:checked + span + span {
+  opacity: 1;
+}
+
+/* Selected state for font options */
+input[name="properties[Font Style]"]:checked + span {
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 767px) {
+  .embroidery-config-options {
+    flex-direction: column;
+  }
+  
+  .embroidery-config-options > div {
+    width: 100% !important;
+  }
+  
+  .embroidery-preview {
+    margin-top: 1rem;
+  }
+}

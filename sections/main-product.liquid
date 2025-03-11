@@ -660,6 +660,10 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'embroidery_configurations' -%}
+                {%- if product.metafields.custom.has_embroidery -%}
+                  {% render 'embroidery-configurations', block: block, product_form_id: product_form_id %}
+                {%- endif -%}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -2071,6 +2075,13 @@
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
         }
+      ]
+    },
+    {
+      "type": "embroidery_configurations",
+      "name": "Embroidery Configurations",
+      "settings": [
+        
       ]
     }
   ],

@@ -3,6 +3,7 @@
   This snippet is used to display embroidery options for products
   @param fonts: array of fonts
   @param colors: array of colors
+  @param image: image url
 {% endcomment %}
 
 {{ 'embroidery-configurations.css' | asset_url | stylesheet_tag }}
@@ -90,9 +91,13 @@
 
     <!-- Right column with preview image (35%) -->
     <div class="custom-w-[35%] custom-flex custom-items-start custom-justify-center">
-      <div class="custom-w-full custom-bg-gray-100 custom-p-2 custom-rounded">
-        <div class="embroidery-preview custom-flex custom-justify-center custom-items-center custom-aspect-square custom-bg-gray-200 custom-rounded custom-p-4 custom-text-center">
-          <p class="custom-text-gray-500 custom-text-base">Preview</p>
+      <div class="custom-w-full custom-p-2 custom-rounded">
+        <div class="embroidery-preview custom-flex custom-flex-col custom-justify-center custom-items-center custom-rounded custom-p-4 custom-text-center custom-relative">
+          <!-- Text preview will be inserted here by JavaScript -->
+          <div class="embroidery-text-preview custom-absolute custom-mb-3 custom-py-2 custom-px-4 custom-z-10 custom-text-2xl"></div>
+          
+          <!-- Background image -->
+          <img src="{{ image }}" alt="Embroidery Preview" class="custom-w-full custom-h-auto custom-object-cover" width="100" height="100">
         </div>
       </div>
     </div>

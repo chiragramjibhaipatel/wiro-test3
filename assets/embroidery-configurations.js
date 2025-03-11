@@ -2,11 +2,12 @@ class EmbroideryConfigurations extends HTMLElement {
   constructor() {
     super();
     this.embroideryCheckbox = this.querySelector('input[name="properties[_has_embroidery]"]');
-    this.embroideryNameInput = this.querySelector('input[name="properties[embroidered_name]"]');
+    this.embroideryNameInput = this.querySelector('input[name="properties[Embroidered Name]"]');
     this.colorOptions = this.querySelectorAll('input[name="properties[Letter Color]"]');
     this.fontOptions = this.querySelectorAll('input[name="properties[Font Style]"]');
     this.configurationContainer = this.querySelector('.embroidery-config-options');
     this.previewElement = this.querySelector('.embroidery-preview');
+    this.textPreviewElement = this.querySelector('.embroidery-text-preview');
     
     this.init();
   }
@@ -67,39 +68,53 @@ class EmbroideryConfigurations extends HTMLElement {
   }
   
   updatePreview() {
-    // Clear existing classes
-    this.previewElement.className = 'embroidery-preview custom-flex custom-justify-center custom-items-center custom-aspect-square custom-bg-gray-200 custom-rounded custom-p-4 custom-text-center';
-    
-    // If embroidery is not checked, show default preview
+    // If embroidery is not checked, hide the text preview
     if (!this.embroideryCheckbox.checked) {
-      this.previewElement.innerHTML = '<p class="custom-text-gray-500 custom-text-base">Preview</p>';
+      this.textPreviewElement.classList.add('custom-hidden');
       return;
     }
     
     // Get current selections
-    const name = this.embroideryNameInput.value || 'Name';
+    const name = this.embroideryNameInput.value || '';
     
-    let selectedColor = 'White';
+    // If no name is entered, hide the text preview
+    if (!name) {
+      this.textPreviewElement.classList.add('custom-hidden');
+      return;
+    }
+    
+    // Show the text preview
+    this.textPreviewElement.classList.remove('custom-hidden');
+    
+    let selectedColor = '';
     this.colorOptions.forEach(option => {
       if (option.checked) {
         selectedColor = option.value;
       }
     });
     
-    let selectedFont = 'Serif';
+    let selectedFont = '';
     this.fontOptions.forEach(option => {
       if (option.checked) {
         selectedFont = option.value;
       }
     });
     
-    // Add selected classes to preview
-    this.previewElement.classList.add(`custom-font-${selectedFont.toLowerCase()}`);
+    // Reset classes
+    this.textPreviewElement.className = 'embroidery-text-preview custom-absolute custom-mb-3 custom-py-2 custom-px-4 custom-z-10 custom-text-2xl';
+    
+    // Add selected font class
+    if (selectedFont) {
+      this.textPreviewElement.classList.add(`custom-font-${selectedFont.toLowerCase()}`);
+    }
+    
+    // Add selected color class
+    if (selectedColor) {
+      this.textPreviewElement.classList.add(`custom-text-${selectedColor.toLowerCase()}`);
+    }
     
     // Update preview content
-    this.previewElement.innerHTML = `
-      <div class="custom-text-2xl custom-font-bold custom-text-${selectedColor.toLowerCase()}">${name}</div>
-    `;
+    this.textPreviewElement.textContent = name;
   }
 }
 

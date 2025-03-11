@@ -8,25 +8,42 @@
   overflow: hidden;
 }
 
-/* Font styles for preview */
-.embroidery-preview.font-serif {
+.embroidery-text-preview {
+  min-height: 2.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Font styles */
+.custom-font-serif {
   font-family: serif;
 }
 
-.embroidery-preview.font-script {
+.custom-font-script {
   font-family: cursive;
   font-style: italic;
 }
 
-/* Color styles for preview */
-.embroidery-preview.color-white {
+/* Color styles */
+.custom-text-white {
   color: #ffffff;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-.embroidery-preview.color-gold {
+.custom-text-gold {
   color: #ffc107;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Background colors for color swatches */
+.custom-bg-white {
+  background-color: #ffffff;
+  border-color: #e5e5e5;
+}
+
+.custom-bg-gold {
+  background-color: #ffc107;
+  border-color: #ffc107;
 }
 
 /* Selected state for color options */

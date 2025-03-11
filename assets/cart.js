@@ -56,6 +56,7 @@ class CartItems extends HTMLElement {
   }
 
   validateQuantity(event) {
+
     const inputValue = parseInt(event.target.value);
     const index = event.target.dataset.index;
     let message = '';
@@ -84,7 +85,29 @@ class CartItems extends HTMLElement {
   }
 
   onChange(event) {
-    this.validateQuantity(event);
+    if (event.target.id.includes('embroidery-checkbox')) {
+      if (event.target.checked) {
+        this.updateQuantity(
+          event.target.dataset.index, 
+          event.target.dataset.quantity, 
+          event, 
+          document.activeElement.getAttribute('name'), 
+          event.target.dataset.hasEmbroideryVariantId, 
+          { "_has_embroidery": "Yes" }
+        );
+      } else {
+        this.updateQuantity(
+          event.target.dataset.index, 
+          event.target.dataset.quantity, 
+          event, 
+          document.activeElement.getAttribute('name'), 
+          event.target.dataset.hasEmbroideryVariantId, 
+          { "_has_embroidery": "No" }
+        );
+      }
+    } else {
+      this.validateQuantity(event);
+    }
   }
 
   onCartUpdate() {
@@ -144,12 +167,13 @@ class CartItems extends HTMLElement {
     ];
   }
 
-  updateQuantity(line, quantity, event, name, variantId) {
+  updateQuantity(line, quantity, event, name, variantId, properties) {
     this.enableLoading(line);
 
     const body = JSON.stringify({
       line,
       quantity,
+      properties,
       sections: this.getSectionsToRender().map((section) => section.section),
       sections_url: window.location.pathname,
     });

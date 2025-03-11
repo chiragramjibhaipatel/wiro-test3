@@ -440,6 +440,53 @@
                             </div>
                           </quantity-popover>
                         </td>
+                        {%- capture has_embroidery -%}
+                          {% render 'get-line-property-by-key', item: item, key: '_has_embroidery' %}
+                        {%- endcapture -%}
+                        {%- assign has_embroidery = has_embroidery | strip -%}
+                        {% if has_embroidery == 'Yes' %}
+                          <td class="custom-w-full " style="grid-column: 1 / 5;">
+                            <cart-embroidery-details class="custom-bg-gray-100 custom-p-2 custom-rounded custom-flex custom-gap-2 custom-w-full">
+                              <div class="custom-flex custom-flex-col custom-gap-2">
+                                <div class="custom-flex custom-items-center custom-gap-2">
+
+                                  <input
+                                    type="checkbox"
+                                    class="custom-w-4 custom-h-4"
+                                    id="embroidery-checkbox{{ item.index }}"
+                                    data-index="{{ item.index | plus: 1 }}"
+                                    data-has-embroidery-variant-id="{{ item.variant.id }}"
+                                    data-quantity="{{ item.quantity }}"
+                                    checked
+                                  >
+                                  <span class="">Add Embroidered Name</span>
+                                </div>
+                                <div>
+                                  Embroidered Name: "{% render 'get-line-property-by-key', item: item, key: 'Embroidered Name' %}", {% render 'get-line-property-by-key', item: item, key: 'Letter Color' %}, {% render 'get-line-property-by-key', item: item, key: 'Font Style' %}
+
+                                </div>
+                              </div>
+                            </cart-embroidery-details>
+                          </td>
+                          {% else %}
+                          <td class="custom-w-full" style="grid-column: 1 / 5;">
+                            <cart-embroidery-details class="custom-bg-gray-100 custom-p-2 custom-rounded custom-flex custom-gap-2 custom-w-full">
+                              <div class="custom-flex custom-flex-col custom-gap-2">
+                                <div class="custom-flex custom-items-center custom-gap-2">
+                                  <input
+                                    type="checkbox"
+                                    class="custom-w-4 custom-h-4"
+                                    id="embroidery-checkbox{{ item.index }}"
+                                    data-index="{{ item.index | plus: 1 }}"
+                                    data-has-embroidery-variant-id="{{ item.variant.id }}"
+                                    data-quantity="{{ item.quantity }}"
+                                  >
+                                  <span class="">Add Embroidered Name</span>
+                                </div>
+                              </div>
+                            </cart-embroidery-details>
+                          </td>
+                          {% endif %}
                       </tr>
                     {%- endfor -%}
                   </tbody>

@@ -1,0 +1,14 @@
+{% comment %}
+  Get line property by key
+  @param item: item
+  @param key: key
+  @return: value
+{% endcomment %}
+
+{% unless item.properties == empty %}
+  {% for property in item.properties %}
+    {% if property.first == key %}
+      {{ property.last }}
+    {% endif %}
+  {% endfor %}
+{% endunless %}

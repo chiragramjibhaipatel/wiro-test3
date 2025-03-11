@@ -34,6 +34,10 @@
             "swatch_shape": "circle"
           }
         },
+        "embroidery_configurations_z8wwJA": {
+          "type": "embroidery_configurations",
+          "settings": {}
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
@@ -61,6 +65,7 @@
         "title",
         "price",
         "variant_picker",
+        "embroidery_configurations_z8wwJA",
         "quantity_selector",
         "buy_buttons",
         "description",

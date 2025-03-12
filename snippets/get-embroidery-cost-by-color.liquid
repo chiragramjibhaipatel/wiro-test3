@@ -3,9 +3,15 @@
   @param color: color
   @param embroidery_cost: embroidery cost
 {% endcomment %}
-
+{% assign first_color_cost = '' %}
 {% for info in embroidery_cost.value %}
     {%- if info.first == color -%}
-        {{ info.last }}
+        {% assign first_color_cost = info.last %}
     {%- endif -%}
 {% endfor %}
+{%  liquid
+    assign shop_currency = shop.currency
+    assign currency_mapping = "INR:Rs.,USD:US$,EUR:€,GBP:£,CAD:C$,AUD:A$"
+    assign currency_symbol = currency_mapping | split: ',' | where: shop_currency | first | split: ':' | last
+%}
++{{ currency_symbol }}{{ first_color_cost }}

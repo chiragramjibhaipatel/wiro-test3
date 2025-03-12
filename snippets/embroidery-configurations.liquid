@@ -27,9 +27,9 @@
 
   <!-- Compact two column layout -->
   <div class="embroidery-config-options custom-flex custom-flex-col custom-hidden custom-bg-gray-100 custom-p-4 custom-pt-0">
-    <div class="custom-flex  custom-gap-3">
+    <div class="custom-flex custom-flex-col md:custom-flex-row custom-gap-3">
       <!-- Left column with configuration options (65%) -->
-      <div class="custom-w-[65%]">
+      <div class="custom-w-full md:custom-w-[65%]">
         <div class="custom-mb-4">
           <p class="custom-mb-2 custom-text-lg custom-text-black">Add up to {{ max_characters }} characters</p>
           <input
@@ -87,7 +87,7 @@
       </div>
 
       <!-- Right column with preview image (35%) -->
-      <div class="custom-w-[35%] custom-flex custom-items-start custom-justify-center">
+      <div class="custom-w-full md:custom-w-[35%] custom-flex custom-items-start custom-justify-center">
         <div class="custom-w-full custom-p-2 custom-rounded">
           <div class="embroidery-preview custom-flex custom-flex-col custom-justify-center custom-items-center custom-rounded custom-p-4 custom-text-center custom-relative">
             <!-- Text preview will be inserted here by JavaScript -->

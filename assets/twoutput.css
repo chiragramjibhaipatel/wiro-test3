@@ -666,3 +666,17 @@
   --tw-ring-opacity: 1 !important;
   --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity)) !important;
 }
+
+@media (min-width: 868px) {
+  .md\:custom-w-\[35\%\] {
+    width: 35% !important;
+  }
+
+  .md\:custom-w-\[65\%\] {
+    width: 65% !important;
+  }
+
+  .md\:custom-flex-row {
+    flex-direction: row !important;
+  }
+}

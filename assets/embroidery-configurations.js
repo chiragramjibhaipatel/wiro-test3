@@ -94,6 +94,20 @@ if (!customElements.get('embroidery-configurations')) {
         selectedSwatch.style.boxShadow = '0px 0px 0px 2px white, 0px 0px 0px 3px black';
       }
 
+      // If a font radio was clicked, update the font styling
+      if (target && target.name === 'properties[Font Style]') {
+        // Remove bold from all font options
+        this.fontOptions.forEach(option => {
+          option.closest('label').querySelector('span').style.fontWeight = 'normal';
+          option.closest('label').style.border = '1px solid gray';
+        });
+
+        // Add bold to selected font
+        const selectedFont = target.closest('label').querySelector('span');
+        selectedFont.style.fontWeight = 'bold';
+        selectedFont.closest('label').style.border = '1px solid black';
+      }
+      
       this.updateEmbroideryCost();
 
       

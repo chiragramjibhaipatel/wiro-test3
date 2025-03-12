@@ -86,7 +86,9 @@
           <div class=" custom-text-xl custom-text-black">Choose font</div>
           <div class="custom-grid custom-grid-cols-2 custom-gap-1">
             {% for font in fonts.value %}
-              <label class="custom-border-2 custom-ring-1 custom-ring-gray-300 custom-rounded custom-m-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-shadow-sm ">
+              <label class="custom-rounded custom-m-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-shadow-sm "
+                style="{%- if forloop.first -%}border: 1px solid black;{%- else -%}border: 1px solid gray{%- endif -%}"
+            >
                 <input
                   type="radio"
                   name="properties[Font Style]"
@@ -94,7 +96,7 @@
                   class="custom-sr-only peer"
                   form="{{ product_form_id }}"
                 >
-                <span class="custom-text-xl custom-font-{{ font | downcase }}">{{ font }}</span>
+                <span class="custom-text-xl custom-font-{{ font | downcase }}" style="{%- if forloop.first -%}font-weight: bold;{%- endif -%}" >{{ font }}</span>
               </label>
             {% endfor %}
           </div>

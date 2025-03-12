@@ -56,6 +56,9 @@ class CartItems extends HTMLElement {
   }
 
   validateQuantity(event) {
+    if(event.target.closest('cart-embroidery-details')) {
+      return;
+    }
 
     const inputValue = parseInt(event.target.value);
     const index = event.target.dataset.index;
@@ -87,14 +90,17 @@ class CartItems extends HTMLElement {
   onChange(event) {
     if (event.target.id.includes('embroidery-checkbox')) {
       if (event.target.checked) {
-        this.updateQuantity(
-          event.target.dataset.index, 
-          event.target.dataset.quantity, 
-          event, 
-          document.activeElement.getAttribute('name'), 
-          event.target.dataset.hasEmbroideryVariantId, 
-          { "_has_embroidery": "Yes" }
-        );
+        event.preventDefault();
+        const configOptions = document.activeElement.closest('cart-embroidery-details').querySelector('.embroidery-config-options');
+        configOptions.classList.remove('custom-hidden');
+        // this.updateQuantity(
+        //   event.target.dataset.index, 
+        //   event.target.dataset.quantity, 
+        //   event, 
+        //   document.activeElement.getAttribute('name'), 
+        //   event.target.dataset.hasEmbroideryVariantId, 
+        //   { "_has_embroidery": "Yes" }
+        // );
       } else {
         this.updateQuantity(
           event.target.dataset.index, 

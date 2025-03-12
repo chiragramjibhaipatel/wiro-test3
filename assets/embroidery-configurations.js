@@ -39,7 +39,6 @@ class EmbroideryConfigurations extends HTMLElement {
     // Initial state
     this.toggleEmbroideryOptions();
     this.updatePreview();
-    this.updateEmbroideryCost();
   }
   
   toggleEmbroideryOptions() {

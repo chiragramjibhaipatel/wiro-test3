@@ -5,6 +5,7 @@
   @param colors: array of colors
   @param image: image url
   @param max_characters: max characters for the embroidered name
+  @param embroidery_cost: embroidery cost
 {% endcomment %}
 
 <script src="{{ 'embroidery-configurations.js' | asset_url }}" defer="defer"></script>
@@ -22,7 +23,17 @@
       >
       <span>Add Embroidered Name</span>
     </label>
-    <span class="custom-text-lg custom-font-bold" data-embroidery-cost='{{ product.metafields.custom.embroidery_cost }}' data-currency-symbol="{{ shop.currency }}"></span>
+    <span class="custom-text-lg custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ shop.currency }}">
+        {% capture first_embroidery_color %}
+            {% render 'get-first-embroidery-color', colors: colors %}
+        {% endcapture %}
+        {% assign first_embroidery_color = first_embroidery_color | strip %}
+        {% capture first_color_cost %}
+            {% render 'get-embroidery-cost-by-color', color: first_embroidery_color, embroidery_cost: embroidery_cost %}
+        {% endcapture %}
+        {% assign first_color_cost = first_color_cost | strip %}
+        {{ first_color_cost }}
+    </span>
   </div>
 
   <!-- Compact two column layout -->

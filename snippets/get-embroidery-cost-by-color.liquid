@@ -1,0 +1,11 @@
+{% comment %} 
+  Get the embroidery cost by color
+  @param color: color
+  @param embroidery_cost: embroidery cost
+{% endcomment %}
+
+{% for info in embroidery_cost.value %}
+    {%- if info.first == color -%}
+        {{ info.last }}
+    {%- endif -%}
+{% endfor %}

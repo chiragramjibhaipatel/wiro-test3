@@ -1,0 +1,11 @@
+{% comment %} 
+  Get the first embroidery color from the colors array
+  @param colors: array of colors
+{% endcomment %}
+
+
+{% for color in colors.value %}
+  {% if forloop.first %}
+    {{ color }}
+  {% endif %}
+{% endfor %}

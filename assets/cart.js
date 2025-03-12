@@ -23,10 +23,43 @@ class CartItems extends HTMLElement {
     }, ON_CHANGE_DEBOUNCE_TIMER);
 
     this.addEventListener('change', debouncedOnChange.bind(this));
-    this.saveConfigurationButton = this.querySelector('[data-embroidery-save-configuration]');
-    this.saveConfigurationButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      console.log('save configuration');
+    this.saveConfigurationButton = this.querySelectorAll('[data-embroidery-save-configuration]');
+    this.saveConfigurationButton.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const embroideredName = event.target.closest('embroidery-configurations').querySelector('[name="properties[Embroidered Name]"]');
+        const letterColorAll = event.target.closest('embroidery-configurations').querySelectorAll('[name="properties[Letter Color]"]');
+        const fontStyleAll = event.target.closest('embroidery-configurations').querySelectorAll('[name="properties[Font Style]"]');
+        let letterColor = "";
+        letterColorAll.forEach(color => {
+          if(color.checked) {
+            console.log("color is checked");
+            letterColor = color.value;
+          } 
+        });
+        let fontStyle = "";
+        fontStyleAll.forEach(style => {
+          if(style.checked) {
+            fontStyle = style.value;
+          }
+        });
+        const properties = {
+          '_has_embroidery': 'Yes',
+          'Embroidered Name': embroideredName.value,
+          'Letter Color': letterColor,
+          'Font Style': fontStyle
+        };
+        console.log(properties);
+        this.updateQuantity(
+          event.target.dataset.index, 
+          event.target.dataset.quantity, 
+          event, 
+          document.activeElement.getAttribute('name'), 
+          event.target.dataset.hasEmbroideryVariantId, 
+          properties
+        );
+     
+      });
     });
   }
 
@@ -95,17 +128,8 @@ class CartItems extends HTMLElement {
   onChange(event) {
     if (event.target.id.includes('embroidery-checkbox')) {
       if (event.target.checked) {
-        event.preventDefault();
         const configOptions = document.activeElement.closest('cart-embroidery-details').querySelector('.embroidery-config-options');
         configOptions.classList.remove('custom-hidden');
-        // this.updateQuantity(
-        //   event.target.dataset.index, 
-        //   event.target.dataset.quantity, 
-        //   event, 
-        //   document.activeElement.getAttribute('name'), 
-        //   event.target.dataset.hasEmbroideryVariantId, 
-        //   { "_has_embroidery": "Yes" }
-        // );
       } else {
         this.updateQuantity(
           event.target.dataset.index, 
@@ -116,9 +140,9 @@ class CartItems extends HTMLElement {
           { "_has_embroidery": "No" }
         );
       }
-    } else {
+    } else if(event.target.closest('quantity-popover')) {
       this.validateQuantity(event);
-    }
+    } 
   }
 
   onCartUpdate() {

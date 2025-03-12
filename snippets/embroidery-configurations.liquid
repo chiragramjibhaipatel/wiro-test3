@@ -37,7 +37,7 @@
             name="properties[Embroidered Name]"
             placeholder="Embroidered Name"
             maxlength="{{ max_characters }}"
-            class="custom-w-full custom-p-2 custom-border custom-border-gray-300 custom-rounded custom-text-lg"
+            class="custom-w-full custom-p-2 custom-text-lg"
             form="{{ product_form_id }}"
           >
         </div>
@@ -47,7 +47,7 @@
           <div class="custom-flex custom-gap-4">
             {% for color in colors.value %}
               <div class="custom-flex custom-flex-col custom-items-center custom-gap-1">
-                <label class="custom-relative custom-w-10 custom-h-10 custom-rounded-full custom-border-2 custom-border-gray-300  custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 group custom-bg-{{ color | downcase }}">
+                <label class="custom-relative custom-w-10 custom-h-10 custom-rounded-full custom-cursor-pointer custom-transition-all custom-duration-200 group custom-bg-{{ color | downcase }}">
                   <input
                     type="radio"
                     name="properties[Letter Color]"
@@ -57,13 +57,11 @@
                   >
                   <span class="custom-sr-only">{{ color }}</span>
                   <span
-                    class="custom-absolute custom-inset-0 custom-rounded-full custom-border-2 peer-checked:custom-border-blue-500 custom-pointer-events-none"
+                    class="custom-absolute custom-inset-0 custom-rounded-full peer-checked:custom-border-blue-500 custom-pointer-events-none {% if color == 'White' %}custom-ring-1 custom-ring-gray-200{% endif %}"
                   ></span>
-                  <span
-                    class="custom-absolute custom-bottom-0 custom-right-0 custom-w-3 custom-h-3 custom-rounded-full  custom-opacity-0 peer-checked:custom-opacity-100 custom-transform custom-translate-x-1 custom-translate-y-1"
-                  ></span>
+                  
                 </label>
-                <span class="custom-text-lg custom-text-black peer-checked:custom-font-bold">{{ color }}</span>
+                <span class="custom-text-base custom-text-black peer-checked:custom-font-bold">{{ color }}</span>
               </div>
             {% endfor %}
           </div>
@@ -73,7 +71,7 @@
           <div class=" custom-text-xl custom-text-black">Choose font</div>
           <div class="custom-grid custom-grid-cols-2 custom-gap-1">
             {% for font in fonts.value %}
-              <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500">
+              <label class="custom-border-2 custom-ring-1 custom-ring-gray-300 custom-rounded custom-m-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-shadow-sm ">
                 <input
                   type="radio"
                   name="properties[Font Style]"
@@ -81,7 +79,7 @@
                   class="custom-sr-only peer"
                   form="{{ product_form_id }}"
                 >
-                <span class="custom-text-base custom-font-{{ font | downcase }}">{{ font }}</span>
+                <span class="custom-text-xl custom-font-{{ font | downcase }}">{{ font }}</span>
               </label>
             {% endfor %}
           </div>

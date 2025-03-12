@@ -71,7 +71,8 @@
                   >
                   <span class="custom-sr-only">{{ color }}</span>
                   <span
-                    class="custom-absolute custom-inset-0 custom-rounded-full peer-checked:custom-border-blue-500 custom-pointer-events-none {% if color == 'White' %}custom-ring-1 custom-ring-gray-200{% endif %}"
+                    class="custom-absolute custom-inset-0 custom-rounded-full custom-pointer-events-none "
+                    {%- if forloop.first -%} style="box-shadow:0px 0px 0px 2px white, 0px 0px 0px 3px black" {%- endif -%}  
                   ></span>
                   
                 </label>

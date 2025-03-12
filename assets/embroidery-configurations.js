@@ -77,6 +77,23 @@ if (!customElements.get('embroidery-configurations')) {
         this.textPreviewElement.classList.add('custom-hidden');
         return;
       }
+
+      // Get the clicked element
+      const target = event.target;
+      
+      // If a letter color radio was clicked, update the swatch styling
+      if (target && target.name === 'properties[Letter Color]') {
+        // Remove shadow from all color swatches
+        this.colorOptions.forEach(option => {
+          const swatch = option.closest('label').querySelector('span:last-of-type');
+          swatch.style.boxShadow = 'none';
+        });
+
+        // Add shadow to selected swatch
+        const selectedSwatch = target.closest('label').querySelector('span:last-of-type');
+        selectedSwatch.style.boxShadow = '0px 0px 0px 2px white, 0px 0px 0px 3px black';
+      }
+
       this.updateEmbroideryCost();
 
       

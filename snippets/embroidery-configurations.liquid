@@ -9,7 +9,7 @@
 
 <script src="{{ 'embroidery-configurations.js' | asset_url }}" defer="defer"></script>
 
-<embroidery-configurations class="embroidery-configurations ">
+<embroidery-configurations class="embroidery-configurations" >
   <!-- Top section with checkbox -->
   <div class="custom-flex custom-items-center custom-justify-between custom-bg-gray-100 custom-p-4 ">
     <label class="custom-flex custom-items-center custom-gap-2">
@@ -22,7 +22,7 @@
       >
       <span>Add Embroidered Name</span>
     </label>
-    <span class="custom-text-base custom-font-medium">+£15</span>
+    <span class="custom-text-lg custom-font-bold" data-embroidery-cost='{{ product.metafields.custom.embroidery_cost }}' data-currency-symbol="{{ shop.currency }}"></span>
   </div>
 
   <!-- Compact two column layout -->
@@ -54,6 +54,7 @@
                     value="{{ color }}"
                     class="custom-sr-only peer"
                     form="{{ product_form_id }}"
+                    checked={% if forloop.first %}true{% else %}false{% endif %}
                   >
                   <span class="custom-sr-only">{{ color }}</span>
                   <span

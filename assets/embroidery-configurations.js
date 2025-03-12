@@ -8,6 +8,8 @@ class EmbroideryConfigurations extends HTMLElement {
     this.configurationContainer = this.querySelector('.embroidery-config-options');
     this.previewElement = this.querySelector('.embroidery-preview');
     this.textPreviewElement = this.querySelector('.embroidery-text-preview');
+    this.embroideryCostElement = this.querySelector('[data-embroidery-cost]');
+    this.currencySymbolElement = this.querySelector('[data-currency-symbol]');
     
     this.init();
   }
@@ -37,6 +39,7 @@ class EmbroideryConfigurations extends HTMLElement {
     // Initial state
     this.toggleEmbroideryOptions();
     this.updatePreview();
+    this.updateEmbroideryCost();
   }
   
   toggleEmbroideryOptions() {
@@ -73,6 +76,8 @@ class EmbroideryConfigurations extends HTMLElement {
       this.textPreviewElement.classList.add('custom-hidden');
       return;
     }
+    this.updateEmbroideryCost();
+
     
     // Get current selections
     const name = this.embroideryNameInput.value || '';
@@ -115,6 +120,27 @@ class EmbroideryConfigurations extends HTMLElement {
     
     // Update preview content
     this.textPreviewElement.textContent = name;
+  }
+
+  updateEmbroideryCost() {
+    let selectedColor = '';
+    this.colorOptions.forEach(option => {
+      if (option.checked) {
+        selectedColor = option.value;
+      }
+    });
+    const embroideryCost = JSON.parse(this.embroideryCostElement.getAttribute('data-embroidery-cost'));
+    const currencySymbol = this.currencySymbolElement.getAttribute('data-currency-symbol');
+    let costOfSelectedColor = embroideryCost[selectedColor];
+    const currencySymbolMapping = {
+      'GBP': '£',
+      'USD': '$',
+      'EUR': '€',
+      'CAD': 'CA$',
+      'AUD': 'A$',
+      'INR': 'Rs.',
+    }
+    this.embroideryCostElement.textContent = `+${currencySymbolMapping[currencySymbol]}${costOfSelectedColor}`;
   }
 }
 

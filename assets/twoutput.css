@@ -489,6 +489,10 @@
   font-weight: 500 !important;
 }
 
+.custom-font-bold {
+  font-weight: 700 !important;
+}
+
 .custom-text-white {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;

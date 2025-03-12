@@ -131,13 +131,14 @@
     <p class="custom-text-lg custom-text-black">Unfortunately we can not accept returns or exchanges on embroidered items.</p>
     {% if is_cart %}
         <button 
-            class="custom-w-full custom-p-2 custom-text-lg  custom-rounded custom-cursor-pointer"
+            class="custom-w-full custom-p-2 custom-text-lg custom-rounded custom-cursor-pointer custom-bg-black custom-text-white hover:custom-bg-gray-800 custom-transition-all custom-duration-200 disabled:custom-opacity-50 disabled:custom-cursor-not-allowed"
             data-embroidery-save-configuration
             data-index="{{ item.index | plus: 1 }}"
             data-has-embroidery-variant-id="{{ item.variant.id }}"
             data-quantity="{{ item.quantity }}"
-            
-        >Save Configuration</button>
+        >
+            Save Configuration
+        </button>
     {% endif %}
   </div>
 </embroidery-configurations>

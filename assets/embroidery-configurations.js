@@ -14,6 +14,8 @@ if (!customElements.get('embroidery-configurations')) {
       this.currencySymbolElement = this.querySelector('[data-currency-symbol]');
       this.productForm = document.querySelector(`form[id="${this.dataset.productFormId}"]`);
       this.addToCartButton = this.productForm ? this.productForm.querySelector('[type="submit"]') : null;
+      this.saveConfigButton = this.querySelector('[data-embroidery-save-configuration]');
+      this.isCart = this.dataset.isCart === 'true';
       
       this.init();
     }
@@ -52,14 +54,28 @@ if (!customElements.get('embroidery-configurations')) {
     }
 
     validateForm() {
-      if (!this.addToCartButton) return;
+      if (this.isCart) {
+        if (!this.saveConfigButton) return;
 
-      if (this.embroideryCheckbox.checked && !this.embroideryNameInput.value.trim()) {
-        this.addToCartButton.disabled = true;
-        this.addToCartButton.setAttribute('title', 'Please enter an embroidered name');
+        if (this.embroideryCheckbox.checked && !this.embroideryNameInput.value.trim()) {
+          this.saveConfigButton.disabled = true;
+          this.saveConfigButton.classList.add('custom-opacity-50', 'custom-cursor-not-allowed');
+          this.saveConfigButton.setAttribute('title', 'Please enter an embroidered name');
+        } else {
+          this.saveConfigButton.disabled = false;
+          this.saveConfigButton.classList.remove('custom-opacity-50', 'custom-cursor-not-allowed');
+          this.saveConfigButton.removeAttribute('title');
+        }
       } else {
-        this.addToCartButton.disabled = false;
-        this.addToCartButton.removeAttribute('title');
+        if (!this.addToCartButton) return;
+
+        if (this.embroideryCheckbox.checked && !this.embroideryNameInput.value.trim()) {
+          this.addToCartButton.disabled = true;
+          this.addToCartButton.setAttribute('title', 'Please enter an embroidered name');
+        } else {
+          this.addToCartButton.disabled = false;
+          this.addToCartButton.removeAttribute('title');
+        }
       }
     }
     

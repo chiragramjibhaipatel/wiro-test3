@@ -459,7 +459,13 @@
                                     data-quantity="{{ item.quantity }}"
                                     checked
                                   >
-                                  <span class="">Add Embroidered Name</span>
+                                  <span class="custom-font-bold">Add Embroidered Name 
+                                    {% capture selected_color_cost %}
+                                      {% render 'get-embroidery-cost-by-color', color: item.properties['Letter Color'], embroidery_cost: item.product.metafields.custom.embroidery_cost %}
+                                    {% endcapture %}
+                                    {%- assign selected_color_cost = selected_color_cost | strip -%}
+                                    ({{ selected_color_cost }})
+                                </span>
                                 </div>
                                 <div>
                                   Embroidered Name: "{% render 'get-line-property-by-key', item: item, key: 'Embroidered Name' %}", {% render 'get-line-property-by-key', item: item, key: 'Letter Color' %}, {% render 'get-line-property-by-key', item: item, key: 'Font Style' %}
@@ -470,7 +476,7 @@
                           </td>
                           {% else %}
                           <td class="custom-w-full" style="grid-column: 1 / 5;">
-                            <cart-embroidery-details class="custom-bg-gray-100 custom-p-2 custom-rounded custom-flex custom-gap-2 custom-w-full">
+                            <cart-embroidery-details class=" custom-p-2 custom-rounded custom-flex custom-gap-2 custom-w-full">
                               <div class="custom-flex custom-flex-col custom-gap-2">
                                 <div class="custom-flex custom-items-center custom-gap-2">
                                   <input

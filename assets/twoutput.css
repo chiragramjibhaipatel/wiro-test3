@@ -215,6 +215,10 @@
   height: 0.75rem !important;
 }
 
+.custom-h-6 {
+  height: 1.5rem !important;
+}
+
 .custom-w-10 {
   width: 2.5rem !important;
 }
@@ -245,6 +249,10 @@
 
 .custom-w-3 {
   width: 0.75rem !important;
+}
+
+.custom-w-6 {
+  width: 1.5rem !important;
 }
 
 .custom-max-w-md {
@@ -481,6 +489,10 @@
 .custom-text-black {
   --tw-text-opacity: 1 !important;
   color: rgb(0 0 0 / var(--tw-text-opacity)) !important;
+}
+
+.custom-accent-black {
+  accent-color: #000 !important;
 }
 
 .custom-opacity-0 {

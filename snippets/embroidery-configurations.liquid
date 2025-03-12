@@ -7,13 +7,12 @@
   @param max_characters: max characters for the embroidered name
 {% endcomment %}
 
-{{ 'embroidery-configurations.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'embroidery-configurations.js' | asset_url }}" defer="defer"></script>
 
-<embroidery-configurations class="embroidery-configurations">
+<embroidery-configurations class="embroidery-configurations ">
   <!-- Top section with checkbox -->
-  <div class="custom-flex custom-items-center custom-justify-between custom-mb-4">
-    <label class="custom-flex custom-items-center custom-gap-2 custom-text-base custom-font-medium">
+  <div class="custom-flex custom-items-center custom-justify-between custom-bg-gray-100 custom-p-4 ">
+    <label class="custom-flex custom-items-center custom-gap-2">
       <input
         type="checkbox"
         name="properties[_has_embroidery]"
@@ -27,80 +26,89 @@
   </div>
 
   <!-- Compact two column layout -->
-  <div class="embroidery-config-options custom-flex custom-gap-3 custom-hidden">
-    <!-- Left column with configuration options (65%) -->
-    <div class="custom-w-[65%]">
-      <div class="custom-mb-4">
-        <p class="custom-mb-2 custom-text-sm">Add up to {{ max_characters }} characters</p>
-        <input
-          type="text"
-          name="properties[Embroidered Name]"
-          placeholder="Embroidered Name"
-          maxlength="{{ max_characters }}"
-          class="custom-w-full custom-p-2 custom-border custom-border-gray-300 custom-rounded custom-text-sm"
-          form="{{ product_form_id }}"
-        >
-      </div>
+  <div class="embroidery-config-options custom-flex custom-flex-col custom-hidden custom-bg-gray-100 custom-p-4 custom-pt-0">
+    <div class="custom-flex  custom-gap-3">
+      <!-- Left column with configuration options (65%) -->
+      <div class="custom-w-[65%]">
+        <div class="custom-mb-4">
+          <p class="custom-mb-2 custom-text-lg custom-text-black">Add up to {{ max_characters }} characters</p>
+          <input
+            type="text"
+            name="properties[Embroidered Name]"
+            placeholder="Embroidered Name"
+            maxlength="{{ max_characters }}"
+            class="custom-w-full custom-p-2 custom-border custom-border-gray-300 custom-rounded custom-text-lg"
+            form="{{ product_form_id }}"
+          >
+        </div>
 
-      <div class="custom-mb-4">
-        <p class="custom-mb-2 custom-text-sm">Choose letter colour</p>
-        <div class="custom-flex custom-gap-4">
-          {% for color in colors.value %}
-            <div class="custom-flex custom-flex-col custom-items-center custom-gap-1">
-              <label class="custom-relative custom-w-10 custom-h-10 custom-rounded-full custom-border-2 custom-border-gray-300 custom-bg-white custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 group custom-bg-{{ color | downcase }}">
+        <div class="custom-mb-4">
+          <p class="custom-mb-2 custom-text-xl custom-text-black">Choose letter colour</p>
+          <div class="custom-flex custom-gap-4">
+            {% for color in colors.value %}
+              <div class="custom-flex custom-flex-col custom-items-center custom-gap-1">
+                <label class="custom-relative custom-w-10 custom-h-10 custom-rounded-full custom-border-2 custom-border-gray-300  custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 group custom-bg-{{ color | downcase }}">
+                  <input
+                    type="radio"
+                    name="properties[Letter Color]"
+                    value="{{ color }}"
+                    class="custom-sr-only peer"
+                    form="{{ product_form_id }}"
+                  >
+                  <span class="custom-sr-only">{{ color }}</span>
+                  <span
+                    class="custom-absolute custom-inset-0 custom-rounded-full custom-border-2 peer-checked:custom-border-blue-500 custom-pointer-events-none"
+                  ></span>
+                  <span
+                    class="custom-absolute custom-bottom-0 custom-right-0 custom-w-3 custom-h-3 custom-rounded-full  custom-opacity-0 peer-checked:custom-opacity-100 custom-transform custom-translate-x-1 custom-translate-y-1"
+                  ></span>
+                </label>
+                <span class="custom-text-lg custom-text-black peer-checked:custom-font-bold">{{ color }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="custom-mb-4 custom-mt-4">
+          <div class=" custom-text-xl custom-text-black">Choose font</div>
+          <div class="custom-grid custom-grid-cols-2 custom-gap-1">
+            {% for font in fonts.value %}
+              <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500">
                 <input
                   type="radio"
-                  name="properties[Letter Color]"
-                  value="{{ color }}"
+                  name="properties[Font Style]"
+                  value="{{ font }}"
                   class="custom-sr-only peer"
                   form="{{ product_form_id }}"
                 >
-                <span class="custom-sr-only">{{ color }}</span>
-                <span
-                  class="custom-absolute custom-inset-0 custom-rounded-full custom-border-2 custom-border-transparent peer-checked:custom-border-blue-500 custom-pointer-events-none"
-                ></span>
-                <span
-                  class="custom-absolute custom-bottom-0 custom-right-0 custom-w-3 custom-h-3 custom-rounded-full custom-bg-blue-500 custom-opacity-0 peer-checked:custom-opacity-100 custom-transform custom-translate-x-1 custom-translate-y-1"
-                ></span>
+                <span class="custom-text-base custom-font-{{ font | downcase }}">{{ font }}</span>
               </label>
-              <span class="custom-text-xs peer-checked:custom-font-bold">{{ color }}</span>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
         </div>
       </div>
 
-      <div class="custom-mb-4">
-        <p class="custom-mb-2 custom-text-sm">Choose font</p>
-        <div class="custom-grid custom-grid-cols-2 custom-gap-2">
-          {% for font in fonts.value %}
-            <label class="custom-border-2 custom-border-gray-300 custom-rounded custom-p-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-border-gray-500 hover:custom-shadow-sm peer-checked:custom-border-blue-500">
-              <input
-                type="radio"
-                name="properties[Font Style]"
-                value="{{ font }}"
-                class="custom-sr-only peer"
-                form="{{ product_form_id }}"
-              >
-              <span class="custom-text-base custom-font-{{ font | downcase }}">{{ font }}</span>
-            </label>
-          {% endfor %}
-        </div>
-      </div>
+      <!-- Right column with preview image (35%) -->
+      <div class="custom-w-[35%] custom-flex custom-items-start custom-justify-center">
+        <div class="custom-w-full custom-p-2 custom-rounded">
+          <div class="embroidery-preview custom-flex custom-flex-col custom-justify-center custom-items-center custom-rounded custom-p-4 custom-text-center custom-relative">
+            <!-- Text preview will be inserted here by JavaScript -->
+            <div
+              class="embroidery-text-preview custom-absolute custom-mb-3 custom-py-2 custom-px-4 custom-z-10 custom-text-2xl"
+            ></div>
 
-      <p class="custom-text-xs">Unfortunately we can not accept returns or exchanges on embroidered items.</p>
-    </div>
-
-    <!-- Right column with preview image (35%) -->
-    <div class="custom-w-[35%] custom-flex custom-items-start custom-justify-center">
-      <div class="custom-w-full custom-p-2 custom-rounded">
-        <div class="embroidery-preview custom-flex custom-flex-col custom-justify-center custom-items-center custom-rounded custom-p-4 custom-text-center custom-relative">
-          <!-- Text preview will be inserted here by JavaScript -->
-          <div class="embroidery-text-preview custom-absolute custom-mb-3 custom-py-2 custom-px-4 custom-z-10 custom-text-2xl"></div>
-          
-          <!-- Background image -->
-          <img src="{{ image }}" alt="Embroidery Preview" class="custom-w-full custom-h-auto custom-object-cover" width="100" height="100">
+            <!-- Background image -->
+            <img
+              src="{{ image }}"
+              alt="Embroidery Preview"
+              class="custom-w-full custom-h-auto custom-object-cover"
+              width="100"
+              height="100"
+            >
+          </div>
         </div>
       </div>
     </div>
+    <p class="custom-text-lg custom-text-black">Unfortunately we can not accept returns or exchanges on embroidered items.</p>
   </div>
 </embroidery-configurations>

@@ -12,7 +12,11 @@
 
 <script src="{{ 'embroidery-configurations.js' | asset_url }}" defer="defer"></script>
 
-<embroidery-configurations data-is-cart="{{ is_cart }}" class="embroidery-configurations" >
+<embroidery-configurations 
+  data-is-cart="{{ is_cart }}" 
+  class="embroidery-configurations"
+  data-product-form-id="{{ product_form_id }}"
+>
   <!-- Top section with checkbox -->
   <div class="custom-flex custom-items-center custom-justify-between custom-bg-gray-100 custom-p-4 ">
     <label class="custom-flex custom-items-center custom-gap-2">

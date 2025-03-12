@@ -12,6 +12,8 @@ if (!customElements.get('embroidery-configurations')) {
       this.textPreviewElement = this.querySelector('.embroidery-text-preview');
       this.embroideryCostElement = this.querySelector('[data-embroidery-cost]');
       this.currencySymbolElement = this.querySelector('[data-currency-symbol]');
+      this.productForm = document.querySelector(`form[id="${this.dataset.productFormId}"]`);
+      this.addToCartButton = this.productForm ? this.productForm.querySelector('[type="submit"]') : null;
       
       this.init();
     }
@@ -28,7 +30,7 @@ if (!customElements.get('embroidery-configurations')) {
       
       // Add event listeners
       this.embroideryCheckbox.addEventListener('change', this.toggleEmbroideryOptions.bind(this));
-      this.embroideryNameInput.addEventListener('input', this.updatePreview.bind(this));
+      this.embroideryNameInput.addEventListener('input', this.handleNameInput.bind(this));
       
       this.colorOptions.forEach(option => {
         option.addEventListener('change', this.updatePreview.bind(this));
@@ -41,6 +43,24 @@ if (!customElements.get('embroidery-configurations')) {
       // Initial state
       this.toggleEmbroideryOptions();
       this.updatePreview();
+      this.validateForm();
+    }
+
+    handleNameInput(event) {
+      this.updatePreview();
+      this.validateForm();
+    }
+
+    validateForm() {
+      if (!this.addToCartButton) return;
+
+      if (this.embroideryCheckbox.checked && !this.embroideryNameInput.value.trim()) {
+        this.addToCartButton.disabled = true;
+        this.addToCartButton.setAttribute('title', 'Please enter an embroidered name');
+      } else {
+        this.addToCartButton.disabled = false;
+        this.addToCartButton.removeAttribute('title');
+      }
     }
     
     toggleEmbroideryOptions() {
@@ -54,6 +74,7 @@ if (!customElements.get('embroidery-configurations')) {
         this.enableFormFields(false);
       }
       
+      this.validateForm();
       // Update preview
       this.updatePreview();
     }

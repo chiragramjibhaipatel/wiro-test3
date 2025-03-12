@@ -476,6 +476,18 @@
                           </td>
                           {% else %}
                           <td class="custom-w-full" style="grid-column: 1 / 5;">
+                            {%- if item.product.metafields.custom.has_embroidery -%}
+                              {% render 'embroidery-configurations', 
+                                is_cart: true,
+                                item: item,
+                                fonts: item.product.metafields.custom.embroidery_fonts,
+                                colors: item.product.metafields.custom.embroidery_colors,
+                                image: item.product.metafields.custom.embroidery_preview_image,
+                                max_characters: item.product.metafields.custom.embroidery_max_characters,
+                                embroidery_cost: item.product.metafields.custom.embroidery_cost
+                              %}
+                            {%- endif -%}
+                            {%comment %}
                             <cart-embroidery-details class=" custom-p-2 custom-rounded custom-flex custom-flex-col custom-gap-2 custom-w-full">
                               <div class="custom-flex custom-flex-col custom-gap-2">
                                 <div class="custom-flex custom-items-center custom-gap-2">
@@ -490,7 +502,17 @@
                                     
                                     novalidate
                                   >
-                                  <span class="custom-font-bold">Add Embroidered Name</span>
+                                  <span class="custom-font-bold">Add Embroidered Name
+                                    {% capture first_embroidery_color %}
+                                      {% render 'get-first-embroidery-color', colors: item.product.metafields.custom.embroidery_colors %}
+                                    {% endcapture %}
+                                    {% assign first_embroidery_color = first_embroidery_color | strip %}
+                                    {% capture first_color_cost %}
+                                        {% render 'get-embroidery-cost-by-color', color: first_embroidery_color, embroidery_cost: item.product.metafields.custom.embroidery_cost %}
+                                    {% endcapture %}
+                                    {% assign first_color_cost = first_color_cost | strip %}
+                                    {{ first_color_cost }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="embroidery-config-options custom-flex custom-flex-col custom-hidden custom-bg-gray-100 custom-p-4 custom-pt-0">
@@ -567,6 +589,7 @@
                                 </div>
                               </div>
                             </cart-embroidery-details>
+                            {% endcomment %}
                           </td>
                           {% endif %}
                       </tr>

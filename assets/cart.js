@@ -23,6 +23,11 @@ class CartItems extends HTMLElement {
     }, ON_CHANGE_DEBOUNCE_TIMER);
 
     this.addEventListener('change', debouncedOnChange.bind(this));
+    this.saveConfigurationButton = this.querySelector('[data-embroidery-save-configuration]');
+    this.saveConfigurationButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      console.log('save configuration');
+    });
   }
 
   cartUpdateUnsubscriber = undefined;
@@ -56,7 +61,7 @@ class CartItems extends HTMLElement {
   }
 
   validateQuantity(event) {
-    if(event.target.closest('cart-embroidery-details')) {
+    if(event.target.closest('embroidery-configurations ')) {
       return;
     }
 

@@ -1,6 +1,8 @@
 {% comment %}
   Embroidery configurations snippet
   This snippet is used to display embroidery options for products
+  @param is_cart: boolean
+  @param item: item
   @param fonts: array of fonts
   @param colors: array of colors
   @param image: image url
@@ -10,7 +12,7 @@
 
 <script src="{{ 'embroidery-configurations.js' | asset_url }}" defer="defer"></script>
 
-<embroidery-configurations class="embroidery-configurations" >
+<embroidery-configurations data-is-cart="{{ is_cart }}" class="embroidery-configurations" >
   <!-- Top section with checkbox -->
   <div class="custom-flex custom-items-center custom-justify-between custom-bg-gray-100 custom-p-4 ">
     <label class="custom-flex custom-items-center custom-gap-2">
@@ -120,5 +122,15 @@
       </div>
     </div>
     <p class="custom-text-lg custom-text-black">Unfortunately we can not accept returns or exchanges on embroidered items.</p>
+    {% if is_cart %}
+        <button 
+            class="custom-w-full custom-p-2 custom-text-lg  custom-rounded custom-cursor-pointer"
+            data-embroidery-save-configuration
+            data-index="{{ item.index | plus: 1 }}"
+            data-has-embroidery-variant-id="{{ item.variant.id }}"
+            data-quantity="{{ item.quantity }}"
+            
+        >Save Configuration</button>
+    {% endif %}
   </div>
 </embroidery-configurations>

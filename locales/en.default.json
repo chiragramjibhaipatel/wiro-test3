@@ -542,6 +542,7 @@
     "letter_color_title": "Choose letter color",
     "font_title": "Choose font",
     "warning_message": "Unfortunately we can not accept returns or exchanges on embroidered items.",
-    "save_configuration": "Save Configuration"
+    "save_configuration": "Save Configuration",
+    "selected_config_title": "Embroidered Name:"
   }
 }

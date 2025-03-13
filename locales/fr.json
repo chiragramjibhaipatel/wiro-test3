@@ -553,6 +553,7 @@
     "letter_color_title": "Choisir la couleur des lettres",
     "font_title": "Choisir la police",
     "warning_message": "Malheureusement, nous ne pouvons pas accepter les retours ou les échanges sur les articles embrodés.",
-    "save_configuration": "Enregistrer la configuration"
+    "save_configuration": "Enregistrer la configuration",
+    "selected_config_title": "Nom embrodé:"
   }
 }

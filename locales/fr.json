@@ -545,5 +545,14 @@
       "expanded": "Formulaire de destinataire de carte-cadeau agrandi",
       "collapsed": "Formulaire de destinataire de carte-cadeau réduit"
     }
+  },
+  "embroidery": {
+    "has_embroidery_label": "Ajouter un nom embrodé",
+    "name_length_limit": "Ajouter jusqu'à {{ limit }} caractères",
+    "name_placeholder": "Nom embrodé",
+    "letter_color_title": "Choisir la couleur des lettres",
+    "font_title": "Choisir la police",
+    "warning_message": "Malheureusement, nous ne pouvons pas accepter les retours ou les échanges sur les articles embrodés.",
+    "save_configuration": "Enregistrer la configuration"
   }
 }

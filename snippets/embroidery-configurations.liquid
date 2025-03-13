@@ -31,7 +31,7 @@
       <span class="{% if is_cart %} custom-font-bold {% endif %}">
         {{ 'embroidery.has_embroidery_label' | t }}
         {% if is_cart %}
-            (<span class="custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ '111' | money_with_currency | split: ' ' | last }}">
+            (<span class="custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ localization.country.currency.iso_code }}">
                 {% capture first_embroidery_color %}
                     {% render 'get-first-embroidery-color', colors: colors %}
                 {% endcapture %}
@@ -46,7 +46,7 @@
     </span>
     </label>
     {% unless is_cart %}
-    <span class="custom-text-lg custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ '111' | money_with_currency | split: ' ' | last }}">
+    <span class="custom-text-lg custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ localization.country.currency.iso_code }}">
         {% capture first_embroidery_color %}
             {% render 'get-first-embroidery-color', colors: colors %}
         {% endcapture %}

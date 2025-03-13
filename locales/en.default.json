@@ -534,5 +534,14 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "embroidery": {
+    "has_embroidery_label": "Add Embroidered Name",
+    "name_length_limit": "Add up to {{ limit }} characters",
+    "name_placeholder": "Embroidered Name",
+    "letter_color_title": "Choose letter color",
+    "font_title": "Choose font",
+    "warning_message": "Unfortunately we can not accept returns or exchanges on embroidered items.",
+    "save_configuration": "Save Configuration"
   }
 }

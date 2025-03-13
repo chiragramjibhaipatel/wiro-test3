@@ -27,7 +27,7 @@
         value="Yes"
         form="{{ product_form_id }}"
       >
-      <span>Add Embroidered Name</span>
+      <span>{{ 'embroidery.has_embroidery_label' | t }}</span>
     </label>
     <span class="custom-text-lg custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ shop.currency }}">
         {% capture first_embroidery_color %}
@@ -48,11 +48,11 @@
       <!-- Left column with configuration options (65%) -->
       <div class="custom-w-full md:custom-w-[65%]">
         <div class="custom-mb-4">
-          <p class="custom-mb-2 custom-text-lg custom-text-black">Add up to {{ max_characters }} characters</p>
+          <p class="custom-mb-2 custom-text-lg custom-text-black">{{ 'embroidery.name_length_limit' | t: limit: max_characters }}</p>
           <input
             type="text"
             name="properties[Embroidered Name]"
-            placeholder="Embroidered Name"
+            placeholder="{{ 'embroidery.name_placeholder' | t }}"
             maxlength="{{ max_characters }}"
             class="custom-w-full custom-p-2 custom-text-lg focus:custom-outline-none focus:custom-outline-0 focus:custom-ring-0 focus:custom-border-1 focus:custom-border-gray-300"
             form="{{ product_form_id }}"
@@ -60,7 +60,7 @@
         </div>
 
         <div class="custom-mb-4">
-          <p class="custom-mb-2 custom-text-xl custom-text-black">Choose letter colour</p>
+          <p class="custom-mb-2 custom-text-xl custom-text-black">{{ 'embroidery.letter_color_title' | t }}</p>
           <div class="custom-flex custom-gap-4">
             {% for color in colors.value %}
               <div class="custom-flex custom-flex-col custom-items-center custom-gap-1">
@@ -87,7 +87,7 @@
         </div>
 
         <div class="custom-mb-4 custom-mt-4">
-          <div class=" custom-text-xl custom-text-black">Choose font</div>
+          <div class=" custom-text-xl custom-text-black">{{ 'embroidery.font_title' | t }}</div>
           <div class="custom-grid custom-grid-cols-2 custom-gap-1">
             {% for font in fonts.value %}
               <label class="custom-rounded custom-m-2 custom-text-center custom-cursor-pointer custom-transition-all custom-duration-200 hover:custom-shadow-sm "
@@ -128,7 +128,7 @@
         </div>
       </div>
     </div>
-    <p class="custom-text-lg custom-text-black">Unfortunately we can not accept returns or exchanges on embroidered items.</p>
+    <p class="custom-text-lg custom-text-black">{{ 'embroidery.warning_message' | t }}</p>
     {% if is_cart %}
         <button 
             class="custom-w-full custom-p-2 custom-text-lg custom-rounded custom-cursor-pointer custom-bg-black custom-text-white hover:custom-bg-gray-800 custom-transition-all custom-duration-200 disabled:custom-opacity-50 disabled:custom-cursor-not-allowed"
@@ -137,7 +137,7 @@
             data-has-embroidery-variant-id="{{ item.variant.id }}"
             data-quantity="{{ item.quantity }}"
         >
-            Save Configuration
+            {{ 'embroidery.save_configuration' | t }}
         </button>
     {% endif %}
   </div>

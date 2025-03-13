@@ -478,13 +478,13 @@
                           <td class="custom-w-full" style="grid-column: 1 / 5;">
                             {%- if item.product.metafields.custom.has_embroidery -%}
                               {% render 'embroidery-configurations', 
-                                is_cart: true,
-                                item: item,
                                 fonts: item.product.metafields.custom.embroidery_fonts,
                                 colors: item.product.metafields.custom.embroidery_colors,
                                 image: item.product.metafields.custom.embroidery_preview_image,
                                 max_characters: item.product.metafields.custom.embroidery_max_characters,
                                 embroidery_cost: item.product.metafields.custom.embroidery_cost
+                                is_cart: true,
+                                item: item,
                               %}
                             {%- endif -%}
                            

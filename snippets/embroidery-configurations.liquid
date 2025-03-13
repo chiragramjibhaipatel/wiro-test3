@@ -1,13 +1,14 @@
 {% comment %}
   Embroidery configurations snippet
   This snippet is used to display embroidery options for products
-  @param is_cart: boolean
-  @param item: item
-  @param fonts: array of fonts
-  @param colors: array of colors
-  @param image: image url
-  @param max_characters: max characters for the embroidered name
-  @param embroidery_cost: embroidery cost
+  @param product_form_id: product form id - required on the pdp 
+  @param fonts: array of fonts - required
+  @param colors: array of colors - required
+  @param image: image url - required
+  @param max_characters: max characters for the embroidered name - required
+  @param embroidery_cost: embroidery cost - required
+  @param is_cart: boolean - required on the cart drawer
+  @param item: item - required on the cart drawer
 {% endcomment %}
 
 <script src="{{ 'embroidery-configurations.js' | asset_url }}" defer="defer"></script>

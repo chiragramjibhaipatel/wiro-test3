@@ -8,7 +8,7 @@
   @param max_characters: max characters for the embroidered name - required
   @param embroidery_cost: embroidery cost - required
   @param is_cart: boolean - required on the cart drawer
-  @param item: item - required on the cart drawer
+  @param item: item - required
 {% endcomment %}
 
 <script src="{{ 'embroidery-configurations.js' | asset_url }}" defer="defer"></script>
@@ -19,7 +19,7 @@
   data-product-form-id="{{ product_form_id }}"
 >
   <!-- Top section with checkbox -->
-  <div class="custom-flex custom-items-center custom-justify-between custom-bg-gray-100 custom-p-4 ">
+  <div class="embroidery-config-toggle custom-flex custom-items-center custom-justify-between {% unless is_cart %} custom-bg-gray-100 {% endunless %} custom-p-4 ">
     <label class="custom-flex custom-items-center custom-gap-2">
       <input
         type="checkbox"
@@ -28,8 +28,24 @@
         value="Yes"
         form="{{ product_form_id }}"
       >
-      <span>{{ 'embroidery.has_embroidery_label' | t }}</span>
+      <span class="{% if is_cart %} custom-font-bold {% endif %}">
+        {{ 'embroidery.has_embroidery_label' | t }}
+        {% if is_cart %}
+            (<span class="custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ shop.currency }}">
+                {% capture first_embroidery_color %}
+                    {% render 'get-first-embroidery-color', colors: colors %}
+                {% endcapture %}
+                {% assign first_embroidery_color = first_embroidery_color | strip %}
+                {% capture first_color_cost %}
+                    {% render 'get-embroidery-cost-by-color', color: first_embroidery_color, embroidery_cost: embroidery_cost %}
+                {% endcapture %}
+                {% assign first_color_cost = first_color_cost | strip %}
+                {{ first_color_cost }}
+            </span>)
+        {% endif %}
+    </span>
     </label>
+    {% unless is_cart %}
     <span class="custom-text-lg custom-font-bold" data-embroidery-cost='{{ embroidery_cost }}' data-currency-symbol="{{ shop.currency }}">
         {% capture first_embroidery_color %}
             {% render 'get-first-embroidery-color', colors: colors %}
@@ -41,6 +57,7 @@
         {% assign first_color_cost = first_color_cost | strip %}
         {{ first_color_cost }}
     </span>
+    {% endunless %}
   </div>
 
   <!-- Compact two column layout -->
@@ -109,7 +126,7 @@
       </div>
 
       <!-- Right column with preview image (35%) -->
-      <div class="custom-w-full md:custom-w-[35%] custom-flex custom-items-start custom-justify-center">
+      <div class="custom-w-full md:custom-w-[35%] custom-flex custom-items-start md:custom-justify-center">
         <div class="custom-w-full custom-p-2 custom-rounded">
           <div class="embroidery-preview custom-flex custom-flex-col custom-justify-center custom-items-center custom-rounded custom-p-4 custom-text-center custom-relative">
             <!-- Text preview will be inserted here by JavaScript -->

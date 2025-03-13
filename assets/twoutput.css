@@ -222,6 +222,10 @@
   align-items: center !important;
 }
 
+.custom-justify-start {
+  justify-content: flex-start !important;
+}
+
 .custom-justify-center {
   justify-content: center !important;
 }
@@ -472,5 +476,9 @@
 
   .md\:custom-flex-row {
     flex-direction: row !important;
+  }
+
+  .md\:custom-justify-center {
+    justify-content: center !important;
   }
 }

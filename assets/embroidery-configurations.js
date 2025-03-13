@@ -16,7 +16,7 @@ if (!customElements.get('embroidery-configurations')) {
       this.addToCartButton = this.productForm ? this.productForm.querySelector('[type="submit"]') : null;
       this.saveConfigButton = this.querySelector('[data-embroidery-save-configuration]');
       this.isCart = this.dataset.isCart === 'true';
-      
+      this.embroideryConfigToggle = this.querySelector('.embroidery-config-toggle');
       this.init();
     }
 
@@ -84,10 +84,16 @@ if (!customElements.get('embroidery-configurations')) {
         this.configurationContainer.classList.remove('custom-hidden');
         // Make sure form fields are enabled
         this.enableFormFields(true);
+        if(this.isCart) {
+          this.embroideryConfigToggle.classList.add('custom-bg-gray-100');
+        }
       } else {
         this.configurationContainer.classList.add('custom-hidden');
         // Disable form fields to prevent submission
         this.enableFormFields(false);
+        if(this.isCart) {
+          this.embroideryConfigToggle.classList.remove('custom-bg-gray-100');
+        }
       }
       
       this.validateForm();

@@ -14,4 +14,4 @@
     assign currency_mapping = "INR:Rs.,USD:US$,EUR:€,GBP:£,CAD:C$,AUD:A$"
     assign currency_symbol = currency_mapping | split: ',' | where: shop_currency | first | split: ':' | last
 %}
-+{{ currency_symbol }}{{ first_color_cost }}
++{{ currency_symbol }}{{ first_color_cost | times: shop.metafields.global.exchange_rate.value | divided_by: 100000 | money_without_currency }}

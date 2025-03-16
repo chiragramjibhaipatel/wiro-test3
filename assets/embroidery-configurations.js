@@ -206,7 +206,7 @@ if (!customElements.get('embroidery-configurations')) {
       });
       const embroideryCost = JSON.parse(this.embroideryCostElement.getAttribute('data-embroidery-cost'));
       const currencySymbol = this.currencySymbolElement.getAttribute('data-currency-symbol');
-      let costOfSelectedColor = embroideryCost[selectedColor];
+      let costOfSelectedColor = parseFloat(embroideryCost[selectedColor]) * Shopify.currency.rate;
       const currencySymbolMapping = {
         'GBP': '£',
         'USD': '$',
@@ -215,7 +215,7 @@ if (!customElements.get('embroidery-configurations')) {
         'AUD': 'A$',
         'INR': 'Rs.',
       }
-      this.embroideryCostElement.textContent = `+${currencySymbolMapping[currencySymbol]}${costOfSelectedColor}`;
+      this.embroideryCostElement.textContent = `+${currencySymbolMapping[currencySymbol]}${costOfSelectedColor.toFixed(2)}`;
     }
   }
 
